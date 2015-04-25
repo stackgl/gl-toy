@@ -15,10 +15,8 @@ void main() {
 }
 `.trim()
 
-// obj -> err, str
-function toy(frag, opts, cb) {
-  if (typeof opts === 'function') (cb = opts), (opts = {})
-
+// str -> err, str
+function toy(frag, cb) {
   const canvas = document.body.appendChild(document.createElement('canvas'))
   const gl     = context(canvas, render)
   const shader = Shader(gl, vert, frag)
