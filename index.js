@@ -15,7 +15,7 @@ void main() {
 }
 `.trim()
 
-// str -> err, str
+// String -> WebGLRenderingContext, Shader
 function toy(frag, cb) {
   const canvas = document.body.appendChild(document.createElement('canvas'))
   const gl     = context(canvas, render)
