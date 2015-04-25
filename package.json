@@ -11,7 +11,7 @@
       "babelify"
     ]
   },
-  "repository": "yoshuawuyts/gl-toy",
+  "repository": "stackgl/gl-toy",
   "keywords": [
     "glslify",
     "webgl",
