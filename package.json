@@ -1,6 +1,6 @@
 {
   "name": "gl-toy",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Create quick WebGL demo's using glslify",
   "main": "index.js",
   "scripts": {
