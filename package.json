@@ -4,7 +4,12 @@
   "description": "Create quick WebGL demo's using glslify",
   "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "start": "budo example/index.js -t glslify | garnish"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
   },
   "repository": "yoshuawuyts/gl-toy",
   "keywords": [
@@ -14,21 +19,22 @@
     "shaders",
     "boilerplate",
     "kickstart",
-    "shadertoy"
+    "shadertoy",
+    "ecosystem:stackgl"
   ],
   "license": "MIT",
   "dependencies": {
     "a-big-triangle": "^1.0.0",
+    "babelify": "^6.0.2",
     "canvas-fit": "^1.2.0",
-    "gl-context": "^0.1.1"
+    "gl-context": "^0.1.1",
+    "gl-shader": "^4.0.1"
   },
   "devDependencies": {
-    "beefy": "^2.1.1",
-    "glslify": "^1.6.0",
-    "istanbul": "^0.3.5",
-    "make-lint": "^1.0.1",
-    "mocha": "^2.0.1",
-    "should": "^4.3.0"
+    "budo": "^4.0.0",
+    "garnish": "^2.1.3",
+    "glslify": "^2.1.2",
+    "glslify-hex": "^2.0.1"
   },
   "files": [
     "lib",

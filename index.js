@@ -1,44 +1,48 @@
-/**
- * Module dependencies.
- */
+const triangle  = require('a-big-triangle')
+const context   = require('gl-context')
+const fit       = require('canvas-fit')
+const Shader    = require('gl-shader')
 
-var canvas    = document.body.appendChild(document.createElement('canvas'));
-var triangle  = require('a-big-triangle');
-var context   = require('gl-context');
-var fit       = require('canvas-fit');
+module.exports = toy
 
-/**
- * Make the canvas responsive
- */
+const vert = `
+precision mediump float;
 
-window.addEventListener('resize', fit(canvas), false);
+attribute vec2 position;
 
-/**
- * Expose `toy`.
- */
+void main() {
+  gl_Position = vec4(position, 1, 1);
+}
+`.trim()
 
-module.exports = toy;
+// obj -> err, str
+function toy(frag, opts, cb) {
+  if (typeof opts === 'function') (cb = opts), (opts = {})
 
-/**
- * Toy.
- *
- * @param {Shader} shader
- * @param {Function} cb
- * @api public
- */
+  const canvas = document.body.appendChild(document.createElement('canvas'))
+  const gl     = context(canvas, render)
+  const shader = Shader(gl, vert, frag)
+  const fitter = fit(canvas)
 
-function toy(shader, cb) {
+  render.update = update
+  render.resize = fitter
+  render.shader = shader
+  render.canvas = canvas
+  render.gl     = gl
 
-  var gl = context(canvas, render);
-  shader = shader(gl);
+  window.addEventListener('resize', fitter, false)
 
   function render() {
-    var width = gl.drawingBufferWidth;
-    var height = gl.drawingBufferHeight;
-    gl.viewport(0, 0, width, height);
+    const width  = gl.drawingBufferWidth
+    const height = gl.drawingBufferHeight
+    gl.viewport(0, 0, width, height)
 
-    shader.bind();
-    cb(gl, shader);
-    triangle(gl);
+    shader.bind()
+    cb(gl, shader)
+    triangle(gl)
   }
-};
+
+  function update(frag) {
+    shader.update(vert, frag)
+  }
+}

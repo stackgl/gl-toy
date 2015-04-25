@@ -5,7 +5,7 @@ uniform vec2 uScreenSize;
 uniform float uTime;
 
 const float SHARPNESS = 300.0;
-const vec3 COLOR_WAVE_LIGHT = #36BCDEF;
+const vec3 COLOR_WAVE_LIGHT = #36BCDE;
 const vec3 COLOR_WHITE = vec3(1.0);
 
 void main() {
