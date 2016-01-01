@@ -29,6 +29,7 @@ function toy(frag, cb) {
   render.gl     = gl
 
   window.addEventListener('resize', fitter, false)
+  return render
 
   function render() {
     const width  = gl.drawingBufferWidth
